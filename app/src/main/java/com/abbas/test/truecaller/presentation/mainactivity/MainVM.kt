@@ -10,7 +10,9 @@ import com.abbas.test.truecaller.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @HiltViewModel
 class MainVM @Inject constructor(
@@ -140,7 +142,7 @@ class MainVM @Inject constructor(
                             val wordCount: ArrayList<String> = arrayListOf()
                             val array = it.split("\n", " ", "\t").filter {
                                 !it.contentEquals("")
-                            }.groupBy { it }
+                            }.groupBy { it.lowercase() }
 
                             for (entry in array) {
                                 wordCount.add("word: ${entry.key}, count: ${entry.value.size} \n")
